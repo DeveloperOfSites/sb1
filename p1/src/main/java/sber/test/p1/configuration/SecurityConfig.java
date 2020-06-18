@@ -1,5 +1,7 @@
 package sber.test.p1.configuration;
 
+import java.util.Properties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 //.antMatchers("/","/home").permitAll()
+                .antMatchers("/reg").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -33,8 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
+        UserDetails user = User
+                .withUsername("user")
                 .password("qwe")
                 .roles("USER")
                 .build();
@@ -48,6 +51,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService());
+        //auth.userDetailsService(userDetailsService());
+        auth.userDetailsService(inMemoryUserDetailsManager());
+        
     }
+    
+    @Bean
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+        final Properties users = new Properties();
+        users.put("user","pass,ROLE_USER,enabled"); //add whatever other user you need
+        return new InMemoryUserDetailsManager(users);
+    }    
 }
