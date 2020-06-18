@@ -1,0 +1,11 @@
+sber\test\p1\component\WebSocketEventListener.class
+sber\test\p1\controller\WebSocketController.class
+sber\test\p1\controller\LoginController.class
+sber\test\p1\app\Application.class
+sber\test\p1\model\ChatMessage$ChatMessageBuilder.class
+sber\test\p1\component\HttpHandshakeInterceptor.class
+sber\test\p1\controller\IndexController.class
+sber\test\p1\model\ChatMessage$MessageType.class
+sber\test\p1\model\ChatMessage.class
+sber\test\p1\configuration\SecurityConfig.class
+sber\test\p1\configuration\WebSocketConfig.class
